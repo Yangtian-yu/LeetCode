@@ -42,6 +42,18 @@ function twosum(nums, target) {
   }
 }
 
+function twosum1(nums, target) {
+  const obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num in obj) {
+      return [obj[num], i];
+    } else {
+      obj[target - num] = i;
+    }
+  }
+}
+
 const nums = [2, 7, 11, 15];
 const target = 9;
-console.log(twosum(nums, target));
+console.log(twosum1(nums, target));
