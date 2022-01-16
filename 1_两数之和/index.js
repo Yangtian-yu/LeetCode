@@ -57,3 +57,4 @@ function twosum1(nums, target) {
 const nums = [2, 7, 11, 15];
 const target = 9;
 console.log(twosum1(nums, target));
+document.write(twosum1(nums, target));
