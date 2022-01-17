@@ -37,4 +37,20 @@ function fiB(n) {
   return cache[n];
 }
 
+//动态规划
+function Fib(n) {
+  if (n <= 1) {
+    return n;
+  }
+  let p = 0;
+  let q = 0;
+  let r = 1;
+  for (let i = 0; i <= n; i++) {
+    p = q;
+    q = r;
+    r = p + q;
+  }
+  return r;
+}
+
 console.log(fiB(6));
