@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function leftpad(str, length, ch) {
+        if (!ch && ch !== 0) {
+          ch = "";
+        }
+        let len = length - str.length + 1; //需要补齐ch的长度
+        return Array(len).join(ch) + str;
+      }
+      //比较两种方法的时间复杂度
+      console.time("leftpad");
+      for (let i = 0; i < 10000; i++) {
+        leftpad("hello", 100000, "0");
+      }
+      console.timeEnd("leftpad");
+      //补齐10个
+      // console.log(leftpad("hello", 10, "0"));
+      //二分法
+      // 0 //拼接20次
+      //00000000  + 00000000 + 0000 直接拼接3次
+      function leftpad2(str, length, ch) {
+        let len = (length = str.length);
+        //二分法
+        let total = "";
+        while (len) {
+          if (len % 2 === 1) {
+            total += ch;
+          }
+          if (len == 1) {
+            return total + str;
+          }
+          ch += ch; //0 00 0000
+          len = parseInt(len / 2);
+        }
+      }
+      // console.log(leftpad2("hello", 10, "0"));
+      console.time("leftpad2");
+      for (let i = 0; i < 10000; i++) {
+        leftpad2("hello", 100000, "0");
+      }
+      console.timeEnd("leftpad2");
+
+      //一个数字除以2 余1
+      //&按位与两个二进制 按位置进行 &&
+      //101 //5
+      //001 //1 除了第1，其他位置都是0，与的结果都是0
+      //001
+      // len % 2 === 1
+      //len/2 num >>  <<
+
+      //二分法位运算优化
+      function leftpad3(str, length, ch) {
+        let len = (length = str.length);
+        //二分法
+        let total = "";
+        while (len) {
+          if (len & 1) {
+            total += ch;
+          }
+          if (len == 1) {
+            return total + str;
+          }
+          ch += ch; //0 00 0000
+          // len = parseInt(len / 2);
+          len = len >> 1;
+        }
+      }
+      console.time("leftpad3");
+      for (let i = 0; i < 10000; i++) {
+        leftpad3("hello", 100000, "0");
+      }
+      console.timeEnd("leftpad3");
+    </script>
+  </body>
+</html>
