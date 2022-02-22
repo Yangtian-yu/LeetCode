@@ -4,28 +4,28 @@ function is(y, m, d) {
     if (m == 2) {
       if ((y % 100 != 0 && y % 4 == 0) || y % 400 == 0) {
         if (1 <= d <= 29) {
-          console.log("YES");
+          console.log("YES1");
         } else {
-          console.log("NO");
+          console.log("NO1");
         }
-      } else if (1 <= d <= 28) {
-        console.log("YSE");
+      } else if (d >= 1 && d <= 28) {
+        console.log("YSE2");
       } else {
-        console.log("NO");
+        console.log("NO2");
       }
     } else if (
-      (y == 1 || y == 3 || y == 5 || y == 7 || y == 8 || y == 10 || y == 12) &&
+      (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) &&
       1 <= d <= 31
     ) {
-      console.log("YES");
-    } else if (1 <= d <= 30) {
-      console.log("YES");
+      console.log("YES3");
+    } else if (d >= 1 && d <= 30) {
+      console.log("YES4");
     } else {
-      console.log("NO");
+      console.log("NO3");
     }
   } else {
-    console.log("NO");
+    console.log("NO4");
   }
 }
 
-is(1900, 2, 29);
+is(2020, 12, 31);
