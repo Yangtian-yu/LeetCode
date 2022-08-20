@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var isValid = function (s) {
+        let arr = [];
+        for (let index = 0; index < s.length; index++) {
+          const element = s[index];
+          let iskuohao0 = element === ")" && arr[arr.length - 1] === "(";
+          let iskuohao1 = element === "]" && arr[arr.length - 1] === "[";
+          let iskuohao2 = element === "}" && arr[arr.length - 1] === "{";
+          if (iskuohao0 || iskuohao1 || iskuohao2) {
+            arr.pop();
+          } else {
+            arr.push(element);
+          }
+        }
+        return !arr.length;
+      };
+      let str = "()";
+      let res = isValid(str);
+      console.log(res);
+
+      var path = "/a/./b/../../c/";
+      var simplifyPath = function (path) {
+        let arr = [];
+        let arrList = path.split("/").filter((item) => item !== "");
+        console.log(arrList);
+        for (let index = 0; index < arrList.length; index++) {
+          const element = arrList[index];
+          if (element === "..") {
+            arr.pop();
+          } else if (element === ".") {
+            continue;
+          } else {
+            arr.push(element);
+          }
+        }
+        if (!arr.length) {
+          return "/";
+        }
+        if (arr[0] !== "") {
+          arr.unshift("");
+        }
+        if (arr[arr.length - 1] === "") {
+          arr.pop();
+        }
+        return arr.join("/");
+      };
+
+      let ressult = simplifyPath(path);
+      console.log(ressult);
+    </script>
+  </body>
+</html>
